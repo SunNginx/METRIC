@@ -18,44 +18,6 @@ METRIC supports platform-specific models for:
 | `METRIC-RRBS/` | Reduced-representation bisulfite sequencing | `groupN2` |
 | `METRIC-WGBS/` | Whole-genome bisulfite sequencing | `groupV15` |
 
-## Repository structure
-
-```text
-METRIC/
-├── README.md
-├── HOW_TO_RUN.md
-├── METRIC_trained_model_deconvolution_guide.md
-├── requirements.txt
-├── .gitignore
-├── LICENSE
-├── METRIC-RRBS/
-│   ├── Code/
-│   │   ├── train_model.py
-│   │   ├── gensim_Utils.py
-│   │   ├── run_all.sh
-│   │   ├── submit_single.sh
-│   │   └── METRIC_trained_model_deconvolution_name_only_fixed.ipynb
-│   └── input/
-│       ├── groupN2.csv
-│       ├── groupN2_testSetSampleGroup.csv
-│       ├── groupN2_top250_U_TrainSet_countU.bed
-│       ├── groupN2_top250_U_TestSet_countU.bed
-│       └── Merged_Markers_top250_U_deldup.bed
-└── METRIC-WGBS/
-    ├── Code/
-    │   ├── train_model.py
-    │   ├── gensim_Utils.py
-    │   ├── run_all.sh
-    │   ├── submit_single.sh
-    │   └── METRIC_trained_model_deconvolution_name_only_fixed.ipynb
-    └── input/
-        ├── groupV15.csv
-        ├── groupV15_testSetSampleGroup.csv
-        ├── groupV15_top250_U_TrainSet_countU.bed
-        ├── groupV15_top250_U_TestSet_countU.bed
-        └── Merged_Markers_Top250_U_deldup.bed
-```
-
 ## Installation
 
 Install Python dependencies:
