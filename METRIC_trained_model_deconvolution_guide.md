@@ -8,7 +8,7 @@ The workflow is:
 2. Extract marker-level U-read counts with `wgbstools homog`.
 3. Merge per-sample `.uxm.bed.gz` files into one `test_countU.bed` matrix.
 4. Prepare `test_sample_group.csv`.
-5. Run `METRIC_trained_model_deconvolution_name_only_fixed.ipynb`.
+5. Run `METRIC_trained_model_deconvolution.ipynb`.
 
 ## 1. Expected layout
 
@@ -19,7 +19,7 @@ METRIC-RRBS/
 ├── Code/
 │   ├── train_model.py
 │   ├── gensim_Utils.py
-│   └── METRIC_trained_model_deconvolution_name_only_fixed.ipynb
+│   └── METRIC_trained_model_deconvolution.ipynb
 ├── input/
 │   ├── Merged_Markers_top250_U_deldup.bed
 │   ├── test_countU.bed
@@ -50,7 +50,7 @@ Use `wgbstools bam2pat` to convert aligned BAM files into `.pat.gz` files.
 Example:
 
 ```bash
-wgbstools bam2pat sample.bam --genome hg19 -o pat_files/
+wgbstools bam2pat -o pat_files/ sample.bam
 ```
 
 Use the same genome build and methylation processing convention as the trained METRIC model.
@@ -66,12 +66,6 @@ MARKER_BED=../input/Merged_Markers_top250_U_deldup.bed
 sort -k1,1 -k2,2n "${MARKER_BED}" > ../input/markerBlock_sorted.bed
 ```
 
-For WGBS, the marker file may be:
-
-```text
-../input/Merged_Markers_Top250_U_deldup.bed
-```
-
 ## 4. Extract marker-level U-read counts with `wgbstools homog`
 
 Run `wgbstools homog` for each `.pat.gz` file.
@@ -79,7 +73,7 @@ Run `wgbstools homog` for each `.pat.gz` file.
 Example command:
 
 ```bash
-wgbstools homog     -b "${marker_bed}"     -f     -o "${output_dir}"     "${patfile_fullpath}"
+wgbstools homog -b /path/to/markerBlock_sorted.bed -o /path/to/output/homog_uxm_file/  /path/to/testset/file/*.pat.gz
 ```
 
 After processing all samples, the output directory should contain one file per sample:
@@ -99,8 +93,8 @@ from functools import reduce
 from pathlib import Path
 import pandas as pd
 
-UXM_DIR = Path("../homog_uxm_file")
-OUTPUT_FILE = Path("../input/test_countU.bed")
+UXM_DIR = Path("/path/samples.uxm.bed.gz")
+OUTPUT_FILE = Path("/path/test_countU.bed")
 
 file_list = sorted(UXM_DIR.glob("*.uxm.bed.gz"))
 if not file_list:
@@ -147,7 +141,7 @@ python merge_uxm_to_countU.py
 The output should be:
 
 ```text
-../input/test_countU.bed
+/path/test_countU.bed
 ```
 
 ## 6. Prepare `test_sample_group.csv`
@@ -177,7 +171,7 @@ sample3,Unknown
 Open:
 
 ```text
-METRIC_trained_model_deconvolution_name_only_fixed.ipynb
+METRIC_trained_model_deconvolution.ipynb
 ```
 
 Edit the configuration cell.

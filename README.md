@@ -128,7 +128,6 @@ For independent samples, the sample metadata file only needs a `name` column.
 - The default optimized examples are:
   - METRIC-RRBS: `n_top_words = 50`, `n_topics = 37`
   - METRIC-WGBS: `n_top_words = 30`, `n_topics = 38`
-- Large raw sequencing files should not be stored in this GitHub repository. Use public repositories such as GEO, SRA, Zenodo or institutional archives for raw and large processed data.
 
 ## Citation
 

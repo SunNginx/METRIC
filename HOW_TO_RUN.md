@@ -152,7 +152,7 @@ METRIC-WGBS/results/groupV15_top250_U_TrainSet_countU_top30/topic_38/
 Use the trained-model deconvolution notebook:
 
 ```text
-METRIC_trained_model_deconvolution_name_only_fixed.ipynb
+METRIC_trained_model_deconvolution.ipynb
 ```
 
 A separate guide is provided:
